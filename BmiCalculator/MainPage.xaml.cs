@@ -57,13 +57,11 @@
             string status = GetBMIStatus(bmi);
             string recommendation = GetRecommendation(status);
 
-            await DisplayAlert(
-                "BMI Results",
-                $"Gender: {selectedGender}\n" +
-                $"BMI: {bmi:F1}\n" +
-                $"Health Status: {status}\n\n" +
-                $"Recommendation:\n{recommendation}",
-                "OK");
+            await Navigation.PushAsync(
+                new ResultPage(
+                    bmi,
+                    selectedGender,
+                    status));
         }
 
         private string GetBMIStatus(double bmi)
